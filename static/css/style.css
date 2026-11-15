@@ -1,0 +1,74 @@
+.flex-div{
+    display: flex;
+}
+
+.center-div{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    display: flex;
+}
+
+.form2 {
+    margin-top: 20px;
+    padding:10px;
+    border: 1px solid #e0e0eb;
+    border-radius: 20px;
+}
+
+
+.submit-btn{
+    margin-top: 3px;
+    background: #7278e5;
+    color: white;
+    display: flex;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+}
+
+.logo{
+    font-size: 20px;
+    color: #15193a;
+    font-weight:bolder;
+    margin-bottom: 40px;
+}
+
+
+.passwordDiv {display:none;}
+
+
+.hello {
+    margin-top: 10px;
+    background: #edeffd;
+    border-radius: 20px;
+    width: 60vw;
+    padding: 20px;
+    height: 20vh;
+}
+
+
+.error {position:relative;
+    width:40vw;
+    left:10vw;
+    top:20vh;
+    }
+.text-profile {width:40vw;}
+
+.main{
+    width: 65vw;
+}
+.date {
+    margin-left:auto;
+    margin-right:auto;
+    color:gray;
+    display:flex;
+    justify-content:center;
+    }
+
+
+.open-btn{
+    text-decoration: none;
+    width: fit-content;
+    padding: 5px;
+}

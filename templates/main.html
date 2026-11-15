@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex-div">
+    <div>
+        <div class="hello">
+            <h1>Привет!</h1>
+            <p>Планируй, записывай, достигай целей</p>
+        </div>
+        <form method="post" style="font-size:170%;" class="form2" enctype="multipart/form-data">
+            <h1>
+                <svg width="60" viewBox="-9 -8 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <circle cx="11" cy="12" r="20" fill="#767ce8"></circle>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
+                              fill="white"></path>
+                    </g>
+                </svg>
+                Создать записку
+            </h1>
+            <div class="form-container">
+                <textarea class="form-control" id="about" rows="4" name="about"></textarea>
+                <div id="passwordDiv" class="passwordDiv form-control" style="display:none;">
+                    <input type="password" name="password">
+                </div>
+                <h4 style="display: none;" class="label-light">Тип заметки</h4>
+                <select style="display: none;" class="dropdown form-select light-color" name="mode"
+                        id="mode">
+                    <option value="default">Обычная заметка</option>
+                    <option value="plane">План</option>
+                </select>
+                <button type="submit" class="submit-btn center-div">Отправить</button>
+            </div>
+        </form>
+        <a class="create" href="/create">
+            <h1>
+                <svg width="60" viewBox="-3 -2 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <circle cx="12" cy="13" fill="#cee0fe" r="15"></circle>
+                        <path d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
+                              stroke="#2e76e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+                Создать план
+            </h1>
+        </a>
+
+    </div>
+</div>
+{% endblock %}

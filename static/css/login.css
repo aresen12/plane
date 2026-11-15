@@ -1,0 +1,38 @@
+.login-form {
+    margin:auto;
+    position: relative;
+    padding: 10px;
+    top:5vh;
+    width:40vw;
+    border-radius: 20px;
+    background: white;
+}
+
+.main{
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #f6f6fe;
+}
+
+.logo{
+    font-size: 20px;
+    text-align: center;
+
+}
+
+
+.submit-btn{
+      border:none;
+    background: #5d5ace;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    width: 90%;
+}
+
+.cont-form{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}

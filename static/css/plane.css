@@ -1,0 +1,31 @@
+.table-plane{
+    width: 60vw;
+}
+
+
+.table-head{
+
+    background: #f5f5fd;
+}
+
+td, th {
+  padding-top: 10px;  /* Сверху */
+  padding-right: 20px; /* Справа */
+  padding-bottom: 15px; /* снизу */
+  padding-left: 10px; /* Слева */
+}
+
+
+.add-btn{
+    border: none;
+    border-radius: 6px;
+    background: #f3f3fe;
+    color:#5656d6;
+    text-align: center;
+    width: 90%;
+    padding: 5px;
+}
+
+.number{
+    text-align: center;
+}

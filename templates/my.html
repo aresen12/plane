@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+{% if mode == "plans" %}
+<h1>Мои планы</h1>
+
+    {% for item in res %}
+    <div class="">
+        {{item.title}}
+        <a class="submit-btn open-btn" href="/plane/{{item.id}}">Открыть</a>
+    </div>
+        {% endfor %}
+{%  else %}
+    <h1>Мои заметки</h1>
+    {% for item in res %}
+    <div>
+        {{item.message}}
+        <a class="submit-btn open-btn" href="/{{item.id}}">Открыть</a>
+    </div>
+        {% endfor %}
+{% endif %}
+{% endblock %}

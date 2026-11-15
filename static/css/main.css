@@ -1,0 +1,28 @@
+.left-panel{
+    padding: 5px;
+    width: 17vw;
+    border-radius: 20px;
+    margin-top: 4vh;
+    color: gray;
+    background: #fbfbfe;
+    margin-right: 10px;
+}
+
+.left-item{
+    text-decoration: none;
+    color: gray;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: fit-content;
+}
+
+
+.create{
+    display: block;
+    background: #eaf0fd;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 10px;
+}
