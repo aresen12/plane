@@ -25,6 +25,34 @@ function gener_data(){
 }
 
 
+function add_author_ui(){
+    let div = document.getElementById("g_m_d");
+
+    if (div.style.display == "none"){
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}
+
+
+function add_author(){
+     $.ajax({
+    url: '/add_author',
+    type: 'POST',
+    dataType: 'json',
+    contentType:'application/json',
+    data: JSON.stringify({"id_pr": app.id, "username": document.getElementById("username").value}),
+    success: function(json){
+       add_author_ui();
+    },
+    error: function(err) {
+        console.error(err);
+    }
+});
+}
+
+
 function send_plane(){
     let data = gener_data();
      $.ajax({

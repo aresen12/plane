@@ -12,6 +12,7 @@
                   stroke="#2e76e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
     </svg>
+    <button class="btn-a" onclick="add_author_ui()">Добавить соавторов</button>
 </h1>
 <div id="title_plane" class="{{plane.title}}">
     <div style="border-radius: 20px; overflow:hidden; width: fit-content;">
@@ -59,6 +60,14 @@
     <button class="add-btn" onclick="add_new_row()">+ Добавить задачу</button>
 
     <button type="submit" class="submit-btn center-div" onclick="send_edit()">Сохранить план</button>
+</div>
+<div id="g_m_d" style="display: none" class="z-d">
+    <div class="global-menu">
+        <h1>Добавление соавторов<button onclick="add_author_ui()" type="button" class="btn-close my-close" aria-label="Close"></button></h1>
+        <div>Введите username соавтора</div>
+        <input class="form-control" id="username">
+        <button class="submit-btn" onclick="add_author()">Добавить</button>
+    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/js/plane.js"></script>

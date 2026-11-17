@@ -10,6 +10,6 @@ class Per(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'per'
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    list_note = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    list_plans = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    list_note = sqlalchemy.Column(sqlalchemy.String, nullable=True, default="")
+    list_plans = sqlalchemy.Column(sqlalchemy.String, nullable=True, default="")
     id_user = sqlalchemy.Column(sqlalchemy.Integer, default=False)

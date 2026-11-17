@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, abort
 from forms.login_form import LoginForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from data import db_session
@@ -8,7 +8,7 @@ from data.user import User
 from forms.register_form import RegisterForm
 from data.paste import Paste
 from data.plane import Plane
-import sqlite3
+from data.permission import Per
 
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ def load_user(user_id):
     db_sess.close()
     return rs
 
-    
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -43,8 +43,8 @@ def check():
         return render_template("watching.html", message=mess, href=f"/{mess.id}")
     db_sess.close()
     return render_template("check.html", message=mess, errors=["Bad password"])
-    
-    
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -59,9 +59,9 @@ def login():
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
-    return render_template('login.html', title='Авторизация', form=form)   
-    
-    
+    return render_template('login.html', title='Авторизация', form=form)
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()
@@ -85,8 +85,8 @@ def reqister():
         db_sess.close()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
-    
-    
+
+
 @app.route("/profile")
 def profile():
     if current_user.is_authenticated:
@@ -143,7 +143,6 @@ def new_plane():
     new_paste.title = data["title"]
     db_sess.add(new_paste)
     if current_user.is_authenticated:
-        user = db_sess.query(User).filter(User.id == current_user.id).first()
         new_paste.name_sender = current_user.name
         new_paste.id_sender = current_user.id
         db_sess.commit()
@@ -153,6 +152,31 @@ def new_plane():
     id_p = new_paste.id
     db_sess.close()
     return {"id_plane": id_p}
+
+
+@app.route('/add_author', methods=['GET', 'POST'])
+def add_author():
+    data = request.get_json()
+    db_sess = db_session.create_session()
+    mess = db_sess.query(Plane).filter(Plane.id == data["id_pr"]).first()
+    if current_user.is_authenticated:
+        if current_user.id == mess.id_sender:
+            user = db_sess.query(User).filter(User.email == data["username"]).first()
+            if user is None:
+                return abort(405)
+            p = db_sess.query(Per).filter(Per.id_user == user.id).first()
+            if p is None:
+                p = Per()
+                p.id_user = user.id
+            if p.list_plans:
+                p.list_plans += f" {mess.id}"
+            else:
+                p.list_plans = f"{mess.id}"
+            p.list_plans.strip()
+            db_sess.add(p)
+            db_sess.commit()
+    db_sess.close()
+    return {"code": 200}
 
 
 @app.route('/my/<mode>', methods=['GET', 'POST'])
@@ -190,14 +214,21 @@ def watching_plane(id_mess):
     if mess is None:
         return redirect("/")
     if mess.id_sender:
-        if not (current_user.is_authenticated and mess.id_sender == current_user.id):
+        if current_user.is_authenticated:
+            per = db_sess.query(Per).filter(Per.id_user == current_user.id).first()
+            lis = []
+            if not (per is None):
+                lis = list(map(int, per.list_plans.split()))
+            if not (mess.id_sender == current_user.id or mess.id in lis):
+                return redirect("/my/notes")
+        else:
             return redirect("/my/notes")
     mess.data = json.loads(mess.data)
     print(mess.data)
     db_sess.close()
     return render_template("plane.html", plane=mess, href=f"/{id_mess}")
 
-    
+
 if __name__ == "__main__":
     db_session.global_init('db/master_paste.db')
     app.run(host="0.0.0.0", debug=True, port=port)
