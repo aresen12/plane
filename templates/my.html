@@ -1,21 +1,27 @@
+<link href="/static/css/my.css" rel="stylesheet" type="text/css">
+
 {% extends "base.html" %}
 {% block content %}
-{% if mode == "plans" %}
-<h1>Мои планы</h1>
+<div class="bg-div">
+    {% if mode == "plans" %}
+    <h1>Мои планы<a class="btn-a" href="/create">+ Создать план</a></h1>
 
     {% for item in res %}
-    <div class="">
+    <div class="item-my">
         {{item.title}}
         <a class="submit-btn open-btn" href="/plane/{{item.id}}">Открыть</a>
     </div>
-        {% endfor %}
-{%  else %}
-    <h1>Мои заметки</h1>
+    {% endfor %}
+    {% else %}
+    <h1>Мои заметки
+        <a class="btn-a" href="/">+ Создать заметку</a>
+    </h1>
     {% for item in res %}
-    <div>
+    <div class="item-my">
         {{item.message}}
         <a class="submit-btn open-btn" href="/{{item.id}}">Открыть</a>
     </div>
-        {% endfor %}
-{% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
 {% endblock %}

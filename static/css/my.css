@@ -1,0 +1,25 @@
+.bg-div{
+    background: #eeecfe;
+    height: 100vh;
+}
+
+.item-my{
+    background: white;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.btn-a{
+    background: #6a65f3;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 20px;
+    margin-left:auto;
+    float: right;
+    margin-right: 20px;
+    margin-top: 3px;
+}

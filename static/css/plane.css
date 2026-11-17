@@ -29,3 +29,8 @@ td, th {
 .number{
     text-align: center;
 }
+
+.delete-btn{
+    background: none;
+    border: none;
+}

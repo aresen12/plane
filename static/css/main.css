@@ -8,6 +8,12 @@
     margin-right: 10px;
 }
 
+
+
+.logo{
+    text-align: center;
+    place-items: center;
+}
 .left-item{
     text-decoration: none;
     color: gray;

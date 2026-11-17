@@ -16,9 +16,17 @@
 }
 
 .logo{
+    margin-left: 3px;
+    margin-top: 5px;
     font-size: 20px;
-    text-align: center;
+ place-items: bottom;
+}
 
+.center-div{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

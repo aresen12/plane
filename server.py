@@ -90,11 +90,23 @@ def reqister():
 @app.route("/profile")
 def profile():
     if current_user.is_authenticated:
-
         return render_template("profile.html", title='профиль')
     return redirect("/")
-     
-     
+
+
+@app.route("/edit/plane", methods=["POST"])
+def edit_plane():
+    data = request.get_json()
+    if current_user.is_authenticated:
+        db_sess = db_session.create_session()
+        plane = db_sess.query(Plane).filter(Plane.id == data["id_plane"]).first()
+        if not (plane is None) and plane.id_sender == current_user.id:
+            plane.data = json.dumps(data["rows"])
+            db_sess.commit()
+        db_sess.close()
+    return {"code": 200}
+
+
 @app.route("/main", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def main():
@@ -140,7 +152,7 @@ def new_plane():
     db_sess.commit()
     id_p = new_paste.id
     db_sess.close()
-    return redirect(f"/plane/{id_p}")
+    return {"id_plane": id_p}
 
 
 @app.route('/my/<mode>', methods=['GET', 'POST'])
@@ -160,9 +172,12 @@ def my_param(mode):
 def watching(id_mess):
     db_sess = db_session.create_session()
     mess = db_sess.query(Paste).filter(Paste.id == id_mess).first()
-    db_sess.close()
     if mess is None:
         return redirect("/")
+    if mess.id_sender:
+        if not (current_user.is_authenticated and mess.id_sender == current_user.id):
+            return redirect("/my/notes")
+    db_sess.close()
     if mess.secret:
         return render_template("check.html", message=mess)
     return render_template("watching.html", message=mess, href=f"/{id_mess}")
@@ -174,6 +189,9 @@ def watching_plane(id_mess):
     mess = db_sess.query(Plane).filter(Plane.id == id_mess).first()
     if mess is None:
         return redirect("/")
+    if mess.id_sender:
+        if not (current_user.is_authenticated and mess.id_sender == current_user.id):
+            return redirect("/my/notes")
     mess.data = json.loads(mess.data)
     print(mess.data)
     db_sess.close()
